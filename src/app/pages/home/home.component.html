@@ -1,0 +1,118 @@
+<!-- App Header -->
+<h1 class="text-dark text-center bg-primary">book</h1>
+<!-- Add Nre Book -->
+<div>
+  <button
+    type="button"
+    class="btn btn-primary popup-add-button"
+    (click)="showPopup()"
+  >
+    Add new books
+  </button>
+
+  <!-- POP-UP : Add New Book -->
+  <div class="popup-overlay {{ popupVisible }}">
+    <!-- <img
+      src="file:/Users/user/Desktop/alchemist book cover.jpg"
+      class="1card-img-top"
+      alt="..."
+    /> -->
+    <div class="popup-content">
+      <form class="form" id="add-form">
+        <label for="">NAME</label>
+        <input type="text" class="form-control" id="book-name" />
+        <label for="">AUTHOR</label>
+        <input type="text" class="form-control" id="book-author" />
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          id="book-category"
+        >
+          <option selected disabled>Choose Category</option>
+          <option value="ACTION">ACTION</option>
+          <option value="ADVENTURE">ADVENTURE</option>
+          <option value="QUEST">QUEST</option>
+        </select>
+      </form>
+      <button type="button" class="btn btn-primary" (click)="addBook()">
+        ADD
+      </button>
+      <button type="button" class="btn btn-primary" (click)="hidePopup()">
+        cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap">
+  <div
+    style="flex-basis: 30%"
+    class="card pt-2 mx-1 my-1"
+    *ngFor="let book of db"
+  >
+    <img
+      src="file:/Users/user/Desktop/alchemist book cover.jpg"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ book.bookName }}</h5>
+      <h5 class="card-title">{{ book.bookAuthor }}</h5>
+      <h5 class="card-title">{{ book.bookCategory }}</h5>
+      <button type="button" class="btn btn-primary" (click)="buyBook(book.id)">
+        BUY
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card pt-2" style="width: 18rem;">
+    <img src="file:/Users/user/Desktop/alchemist book cover.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">alchemist</h5>
+      <h5 class="card-title">paulo coelho</h5>
+      <h5 class="card-title">adventure</h5>
+      <button type="button" class="btn btn-primary" (click)="buyBook()">BUY</button>
+    </div>
+  </div> -->
+
+<div>
+  <h1 class="category-title text-light text-center bg-info">CATEGORY</h1>
+  <div class="category-body">
+    <button type="button" class="btn btn-primary action-button">ACTION</button>
+
+    <button type="button" class="btn btn-primary thriller-button">
+      THRILLER
+    </button>
+    <button type="button" class="btn btn-primary adventure-button">
+      ADVENTURE
+    </button>
+  </div>
+</div>
+<h1 class="text-light text-center bg-dark">CART</h1>
+
+<div style="display: flex; flex-wrap: wrap">
+  <div
+    style="flex-basis: 30%"
+    class="card pt-2 mx-1 my-1 {{ cartVisible }}"
+    *ngFor="let book of cartDb"
+  >
+    <img
+      src="file:/Users/user/Desktop/alchemist book cover.jpg"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ book.bookName }}</h5>
+      <h5 class="card-title">{{ book.bookAuthor }}</h5>
+      <h5 class="card-title">{{ book.bookCategory }}</h5>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="removeBook(book.id)"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+</div>
